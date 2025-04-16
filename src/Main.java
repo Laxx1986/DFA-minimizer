@@ -3,19 +3,18 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         //Eredeti DFA definiálása
-        Set<Integer> states = new HashSet<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
-        Set<Character> alphabet = new HashSet<>(Arrays.asList('0', '1'));
+        Set<Integer> states = new HashSet<>(Arrays.asList(0, 1, 2, 3, 4, 5));
+        Set<Character> alphabet = new HashSet<>(Arrays.asList('a', 'b'));
         Map<Integer, Map<Character, Integer>> transitionFunction = new HashMap<>() {{
-            put(0, Map.of('0', 1, '1', 2));
-            put(1, Map.of('0', 1, '1', 6));
-            put(2, Map.of('0', 3, '1', 4));
-            put(3, Map.of('0', 3, '1', 4));
-            put(4, Map.of('0', 5, '1', 6));
-            put(5, Map.of('0', 5, '1', 6));
-            put(6, Map.of('0', 6, '1', 6));
+            put(0, Map.of('a', 1, 'b', 2));
+            put(1, Map.of('a', 0, 'b', 3));
+            put(2, Map.of('a', 4, 'b', 5));
+            put(3, Map.of('a', 4, 'b', 5));
+            put(4, Map.of('a', 4, 'b', 5));
+            put(5, Map.of('a', 5, 'b', 5));
         }};
         int startState = 0;
-        Set<Integer> acceptingStates = new HashSet<>(Arrays.asList(0, 1, 6));
+        Set<Integer> acceptingStates = new HashSet<>(Arrays.asList(3, 5));
 
 
         DFA dfa = new DFA(states, alphabet, transitionFunction, startState, acceptingStates);
